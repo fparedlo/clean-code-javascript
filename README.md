@@ -1,47 +1,48 @@
 # clean-code-javascript
 
-## Table of Contents
+## Taula de continguts
 
-1. [Introduction](#introduction)
+1. [Introducció](#introduction)
 2. [Variables](#variables)
-3. [Functions](#functions)
-4. [Objects and Data Structures](#objects-and-data-structures)
+3. [Funcions](#functions)
+4. [Objectes i Estructures de Dades](#objects-and-data-structures)
 5. [Classes](#classes)
 6. [SOLID](#solid)
 7. [Testing](#testing)
-8. [Concurrency](#concurrency)
-9. [Error Handling](#error-handling)
-10. [Formatting](#formatting)
-11. [Comments](#comments)
-12. [Translation](#translation)
+8. [Concurrència](#concurrency)
+9. [Gestió d'Errors](#error-handling)
+10. [Format](#formatting)
+11. [Comentaris](#comments)
+12. [Traducció](#translation)
 
-## Introduction
 
-![Humorous image of software quality estimation as a count of how many expletives
-you shout when reading code](https://www.osnews.com/images/comics/wtfm.jpg)
+## Introducció
 
-Software engineering principles, from Robert C. Martin's book
+![Imatge humorística de l'estimació de la qualitat del programari com un recompte de quants exabruptes
+diguem quan llegim codi](https://www.osnews.com/images/comics/wtfm.jpg)
+
+Principis d'enginyeria de programari, del llibre de Robert C. Martin
 [_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
-adapted for JavaScript. This is not a style guide. It's a guide to producing
-[readable, reusable, and refactorable](https://github.com/ryanmcdermott/3rs-of-software-architecture) software in JavaScript.
+adaptats per a JavaScript. Això no és una guia d'estil. És una guia per a produir
+[programari llegible, reutilitzable i refactoritzable](https://github.com/ryanmcdermott/3rs-of-software-architecture) en JavaScript.
 
-Not every principle herein has to be strictly followed, and even fewer will be
-universally agreed upon. These are guidelines and nothing more, but they are
-ones codified over many years of collective experience by the authors of
+No cal seguir estrictament cada principi aquí, i encara menys seran
+universalment acceptats. Aquestes són directrius i res més, però han estat
+codificades al llarg de molts anys d'experiència col·lectiva pels autors de
 _Clean Code_.
 
-Our craft of software engineering is just a bit over 50 years old, and we are
-still learning a lot. When software architecture is as old as architecture
-itself, maybe then we will have harder rules to follow. For now, let these
-guidelines serve as a touchstone by which to assess the quality of the
-JavaScript code that you and your team produce.
+La nostra artesania de l'enginyeria de programari té només una mica més de 50 anys, i encara
+estem aprenent moltes coses. Quan l'arquitectura de programari tingui l'edat de l'arquitectura
+mateixa, potser llavors tindrem normes més estrictes a seguir. De moment, deixeu que aquestes
+directrius serveixin com a referència per avaluar la qualitat del
+codi JavaScript que tu i el teu equip produïu.
 
-One more thing: knowing these won't immediately make you a better software
-developer, and working with them for many years doesn't mean you won't make
-mistakes. Every piece of code starts as a first draft, like wet clay getting
-shaped into its final form. Finally, we chisel away the imperfections when
-we review it with our peers. Don't beat yourself up for first drafts that need
-improvement. Beat up the code instead!
+Una cosa més: conèixer aquestes directrius no et farà immediatament un millor desenvolupador de programari,
+i treballar amb elles durant molts anys no vol dir que no cometis errors.
+Cada tros de codi comença com un primer esborrany, com l'argila humida que
+s'ajusta a la seva forma final. Finalment, anem esculpint les imperfeccions quan
+el revisem amb els nostres companys. No et castiguis per primers esborranys que necessiten
+millora. Castigueu el codi en canvi!
 
 ## **Variables**
 
@@ -81,13 +82,13 @@ getUser();
 
 ### Use searchable names
 
-We will read more code than we will ever write. It's important that the code we
-do write is readable and searchable. By _not_ naming variables that end up
-being meaningful for understanding our program, we hurt our readers.
-Make your names searchable. Tools like
-[buddy.js](https://github.com/danielstjules/buddy.js) and
+Llegirem més codi del que mai escriurem. És important que el codi que
+escrivim sigui llegible i searchable. Al _no_ donar noms als variables que acaben
+sent significatius per comprendre el nostre programa, perjudiquem els nostres lectors.
+Fes que els teus noms siguin fàcils de cercar. Eines com
+[buddy.js](https://github.com/danielstjules/buddy.js) i
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
-can help identify unnamed constants.
+poden ajudar a identificar constants sense noms.
 
 **Bad:**
 
@@ -203,10 +204,11 @@ function paintCar(car, color) {
 
 ### Use default parameters instead of short circuiting or conditionals
 
-Default parameters are often cleaner than short circuiting. Be aware that if you
-use them, your function will only provide default values for `undefined`
-arguments. Other "falsy" values such as `''`, `""`, `false`, `null`, `0`, and
-`NaN`, will not be replaced by a default value.
+Els paràmetres per defecte sovint són més nets que l'ús de l'operador de curtcircuit. Tingueu en compte que, si
+els utilitzeu, la vostra funció només proporcionarà valors per defecte als arguments `undefined`.
+Altres valors "falsos" com ara `''`, `""`, `false`, `null`, `0` i
+`NaN`, no seran substituïts per un valor per defecte.
+
 
 **Bad:**
 
@@ -231,33 +233,34 @@ function createMicrobrewery(name = "Hipster Brew Co.") {
 
 ### Function arguments (2 or fewer ideally)
 
-Limiting the amount of function parameters is incredibly important because it
-makes testing your function easier. Having more than three leads to a
-combinatorial explosion where you have to test tons of different cases with
-each separate argument.
+Limitar la quantitat de paràmetres d'una funció és increïblement important perquè
+facilita les proves de la teva funció. Tenir més de tres porta a una
+explosió combinatorial on has de provar molts casos diferents amb
+cada argument separat.
 
-One or two arguments is the ideal case, and three should be avoided if possible.
-Anything more than that should be consolidated. Usually, if you have
-more than two arguments then your function is trying to do too much. In cases
-where it's not, most of the time a higher-level object will suffice as an
+Un o dos arguments és el cas ideal, i s'ha d'evitar tenir tres si és possible.
+Qualsevol cosa més que això hauria de ser consolidada. Normalment, si tens
+més de dos arguments, la teva funció està intentant fer massa coses. En casos
+on no ho estigui, la major part del temps un objecte de nivell superior serà suficient com
 argument.
 
-Since JavaScript allows you to make objects on the fly, without a lot of class
-boilerplate, you can use an object if you are finding yourself needing a
-lot of arguments.
+Ja que JavaScript et permet crear objectes sobre la marxa, sense molta plantilla de classe,
+pots utilitzar un objecte si et trobes que necessites
+molts arguments.
 
-To make it obvious what properties the function expects, you can use the ES2015/ES6
-destructuring syntax. This has a few advantages:
+Per fer evident quines propietats espera la funció, pots utilitzar la sintaxi de
+destructuració d'ES2015/ES6. Això té algunes avantatges:
 
-1. When someone looks at the function signature, it's immediately clear what
-   properties are being used.
-2. It can be used to simulate named parameters.
-3. Destructuring also clones the specified primitive values of the argument
-   object passed into the function. This can help prevent side effects. Note:
-   objects and arrays that are destructured from the argument object are NOT
-   cloned.
-4. Linters can warn you about unused properties, which would be impossible
-   without destructuring.
+1. Quan algú mira la signatura de la funció, és immediatament clar quines
+   propietats s'estan utilitzant.
+2. Es pot utilitzar per simular paràmetres amb noms.
+3. La destructuració també clona els valors primitius especificats de l'objecte d'argument
+   passat a la funció. Això pot ajudar a prevenir efectes secundaris. Nota:
+   els objectes i les llistes que es destrueixen de l'objecte d'argument NO són
+   clonats.
+4. Les eines de llinter poden alertar-te sobre propietats no utilitzades, cosa que seria impossible
+   sense la destructuració.
+
 
 **Bad:**
 
@@ -289,11 +292,12 @@ createMenu({
 
 ### Functions should do one thing
 
-This is by far the most important rule in software engineering. When functions
-do more than one thing, they are harder to compose, test, and reason about.
-When you can isolate a function to just one action, it can be refactored
-easily and your code will read much cleaner. If you take nothing else away from
-this guide other than this, you'll be ahead of many developers.
+Aquesta és de lluny la regla més important en enginyeria de programari. Quan les funcions
+fan més d'una cosa, són més difícils de compondre, provar i raonar.
+Quan pots aïllar una funció per fer només una acció, es pot refactoritzar
+fàcilment i el teu codi serà molt més llegible. Si no prens res més d'aquesta
+guia que això, estàs per davant de molts desenvolupadors.
+
 
 **Bad:**
 
@@ -353,9 +357,9 @@ addMonthToDate(1, date);
 
 ### Functions should only be one level of abstraction
 
-When you have more than one level of abstraction your function is usually
-doing too much. Splitting up functions leads to reusability and easier
-testing.
+Quan tens més d'un nivell d'abstracció, la teva funció normalment
+fa massa coses. Descompondre les funcions porta a la reutilització i a
+proves més senzilles.
 
 **Bad:**
 
@@ -423,28 +427,29 @@ function parse(tokens) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Remove duplicate code
+### Elimina el codi duplicat
 
-Do your absolute best to avoid duplicate code. Duplicate code is bad because it
-means that there's more than one place to alter something if you need to change
-some logic.
+Fes el teu millor esforç per evitar el codi duplicat. El codi duplicat és dolent perquè
+significa que hi ha més d'un lloc on modificar alguna cosa si necessites canviar
+alguna lògica.
 
-Imagine if you run a restaurant and you keep track of your inventory: all your
-tomatoes, onions, garlic, spices, etc. If you have multiple lists that
-you keep this on, then all have to be updated when you serve a dish with
-tomatoes in them. If you only have one list, there's only one place to update!
+Imagina que gestiones un restaurant i control·les el teu inventari: tots els teus
+tomàquets, cebes, alls, espècies, etc. Si tens múltiples llistes on
+ho registres, llavors totes han de ser actualitzades quan serveixis un plat amb
+tomàquets. Si només tens una llista, només hi ha un lloc per actualitzar!
 
-Oftentimes you have duplicate code because you have two or more slightly
-different things, that share a lot in common, but their differences force you
-to have two or more separate functions that do much of the same things. Removing
-duplicate code means creating an abstraction that can handle this set of
-different things with just one function/module/class.
+Moltes vegades tens codi duplicat perquè tens dues o més coses lleugerament
+diferents, que comparteixen moltes coses en comú, però les seves diferències et forcen
+a tenir dues o més funcions separades que fan moltes de les mateixes coses. Eliminar
+el codi duplicat significa crear una abstracció que pugui gestionar aquest conjunt de
+coses diferents amb només una funció/mòdul/classe.
 
-Getting the abstraction right is critical, that's why you should follow the
-SOLID principles laid out in the _Classes_ section. Bad abstractions can be
-worse than duplicate code, so be careful! Having said this, if you can make
-a good abstraction, do it! Don't repeat yourself, otherwise you'll find yourself
-updating multiple places anytime you want to change one thing.
+Tenir l'abstracció correcta és crític, per això has de seguir els
+principis SOLID exposats a la secció de _Classes_. Les abstraccions dolentes poden ser
+pitjors que el codi duplicat, així que ves amb compte! Dicho esto, si pots fer
+una bona abstracció, fes-ho! No et repeteixis, d'una altra manera et trobaràs
+actualitzant diversos llocs cada vegada que vulguis canviar una cosa.
+
 
 **Bad:**
 
@@ -562,9 +567,9 @@ createMenu(menuConfig);
 
 **[⬆ back to top](#table-of-contents)**
 
-### Don't use flags as function parameters
+### No utilitzis banderes com a paràmetres de funció
 
-Flags tell your user that this function does more than one thing. Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
+Les banderes indiquen als teus usuaris que aquesta funció fa més d'una cosa. Les funcions haurien de fer només una cosa. Separa les teves funcions si segueixen diferents camins de codi basats en un booleà.
 
 **Bad:**
 
@@ -592,22 +597,23 @@ function createTempFile(name) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Avoid Side Effects (part 1)
+### Evita els efectes secundaris (part 1)
 
-A function produces a side effect if it does anything other than take a value in
-and return another value or values. A side effect could be writing to a file,
-modifying some global variable, or accidentally wiring all your money to a
-stranger.
+Una funció produeix un efecte secundari si fa alguna cosa més que rebre un valor
+i retornar un altre valor o valors. Un efecte secundari pot ser escriure en un fitxer,
+modificar alguna variable global o enviar tots els teus diners a un
+desconegut.
 
-Now, you do need to have side effects in a program on occasion. Like the previous
-example, you might need to write to a file. What you want to do is to
-centralize where you are doing this. Don't have several functions and classes
-that write to a particular file. Have one service that does it. One and only one.
+Ara bé, de tant en tant necessites tenir efectes secundaris en un programa. Com a l'exemple anterior,
+potser necessites escriure en un fitxer. El que vols fer és
+centralitzar on estàs fent això. No tinguis diverses funcions i classes
+que escriguin en un fitxer en particular. Té-ne només una.
 
-The main point is to avoid common pitfalls like sharing state between objects
-without any structure, using mutable data types that can be written to by anything,
-and not centralizing where your side effects occur. If you can do this, you will
-be happier than the vast majority of other programmers.
+El punt principal és evitar trampes com compartir estat entre objectes
+sense cap estructura, utilitzar tipus de dades mutables que poden ser escrits per qualsevol,
+i no centralitzar on es produeixen els teus efectes secundaris. Si pots fer això, seràs
+més feliç que la gran majoria d'altres programadors.
+
 
 **Bad:**
 
@@ -641,43 +647,44 @@ console.log(newName); // ['Ryan', 'McDermott'];
 
 **[⬆ back to top](#table-of-contents)**
 
-### Avoid Side Effects (part 2)
+### Evita els efectes secundaris (part 2)
 
-In JavaScript, some values are unchangeable (immutable) and some are changeable 
-(mutable). Objects and arrays are two kinds of mutable values so it's important 
-to handle them carefully when they're passed as parameters to a function. A 
-JavaScript function can change an object's properties or alter the contents of 
-an array which could easily cause bugs elsewhere.
+A JavaScript, alguns valors són incanviables (immutables) i d'altres són canviables 
+(mutables). Objectes i llistes són dues tipus de valors mutables, per tant, és important 
+manejar-los amb cura quan són passats com a paràmetres a una funció. Una 
+funció JavaScript pot canviar les propietats d'un objecte o alterar el contingut d'
+una llista, la qual cosa podria causar errors en altres llocs.
 
-Suppose there's a function that accepts an array parameter representing a 
-shopping cart. If the function makes a change in that shopping cart array - 
-by adding an item to purchase, for example - then any other function that 
-uses that same `cart` array will be affected by this addition. That may be 
-great, however it could also be bad. Let's imagine a bad situation:
+Suposem que hi ha una funció que accepta un paràmetre de tipus llista que representa un 
+carro de la compra. Si la funció fa algun canvi en aquesta llista de carro de la compra - 
+afegint un article per comprar, per exemple - llavors qualsevol altra funció que 
+utilitzi aquesta mateixa llista `cart` es veurà afectada per aquesta afegida. Això pot ser
+genial, no obstant això també pot ser dolent. Imaginem una situació dolenta:
 
-The user clicks the "Purchase" button which calls a `purchase` function that
-spawns a network request and sends the `cart` array to the server. Because
-of a bad network connection, the `purchase` function has to keep retrying the
-request. Now, what if in the meantime the user accidentally clicks an "Add to Cart"
-button on an item they don't actually want before the network request begins?
-If that happens and the network request begins, then that purchase function
-will send the accidentally added item because the `cart` array was modified.
+L'usuari fa clic al botó "Comprar" que crida una funció `comprar` que
+inicia una sol·licitud de xarxa i envia la llista `cart` al servidor. A causa
+d'una mala connexió de xarxa, la funció `comprar` ha de seguir intentant la
+sol·licitud. Ara, què passa si mentrestant l'usuari fa clic accidentalment al botó "Afegir al carro"
+en un article que en realitat no vol abans que comenci la sol·licitud de xarxa?
+Si això passa i comença la sol·licitud de xarxa, llavors aquesta funció de compra
+enviarà l'article afegit accidentalment perquè la llista `cart` va ser modificada.
 
-A great solution would be for the `addItemToCart` function to always clone the 
-`cart`, edit it, and return the clone. This would ensure that functions that are still
-using the old shopping cart wouldn't be affected by the changes.
+Una solució excel·lent seria que la funció `afegirItemAlCarro` sempre clonés el
+`cart`, l'edités i retornés el clon. Això garantiria que les funcions que segueixen
+utilitzant el vell carro de la compra no es veurien afectades pels canvis.
 
-Two caveats to mention to this approach:
+Cal mencionar dues advertències sobre aquest enfocament:
 
-1. There might be cases where you actually want to modify the input object,
-   but when you adopt this programming practice you will find that those cases
-   are pretty rare. Most things can be refactored to have no side effects!
+1. Potser hi hagi casos en què realment vulguis modificar l'objecte d'entrada,
+   però quan adoptes aquesta pràctica de programació et adonaràs que aquests casos
+   són força rars. Gairebé tot es pot refactoritzar perquè no tingui efectes secundaris!
 
-2. Cloning big objects can be very expensive in terms of performance. Luckily,
-   this isn't a big issue in practice because there are
-   [great libraries](https://facebook.github.io/immutable-js/) that allow
-   this kind of programming approach to be fast and not as memory intensive as
-   it would be for you to manually clone objects and arrays.
+2. Clonar objectes grans pot ser molt car en termes de rendiment. Per sort,
+   això no és un gran problema a la pràctica perquè hi ha
+   [llibreries fantàstiques](https://facebook.github.io/immutable-js/) que permeten
+   que aquest enfocament de programació sigui ràpid i no tan intensiu en memòria com
+   ho seria si clonessis manualment objectes i llistes.
+
 
 **Bad:**
 
@@ -697,17 +704,18 @@ const addItemToCart = (cart, item) => {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Don't write to global functions
+### No escriguis a funcions globals
 
-Polluting globals is a bad practice in JavaScript because you could clash with another
-library and the user of your API would be none-the-wiser until they get an
-exception in production. Let's think about an example: what if you wanted to
-extend JavaScript's native Array method to have a `diff` method that could
-show the difference between two arrays? You could write your new function
-to the `Array.prototype`, but it could clash with another library that tried
-to do the same thing. What if that other library was just using `diff` to find
-the difference between the first and last elements of an array? This is why it
-would be much better to just use ES2015/ES6 classes and simply extend the `Array` global.
+Contaminar globals és una pràctica dolenta en JavaScript perquè podries entrar en conflicte amb una altra
+biblioteca i l'usuari de la teva API no se'n adonaria fins que obté
+una excepció en producció. Pensem en un exemple: què passaria si volguessis
+ampliar el mètode natiu d'Array de JavaScript per tenir un mètode `diff` que pogués
+mostrar la diferència entre dues llistes? Podries escriure la teva nova funció
+a `Array.prototype`, però podria entrar en conflicte amb una altra biblioteca que intentés
+fer el mateix. I si aquesta altra biblioteca simplement utilitzés `diff` per trobar
+la diferència entre el primer i l'últim element d'una llista? Per això,
+seria molt millor utilitzar simplement classes ES2015/ES6 i estendre simplement l'`Array` global.
+
 
 **Bad:**
 
@@ -731,11 +739,12 @@ class SuperArray extends Array {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Favor functional programming over imperative programming
+### Prefereix la programació funcional sobre la programació imperativa
 
-JavaScript isn't a functional language in the way that Haskell is, but it has
-a functional flavor to it. Functional languages can be cleaner and easier to test.
-Favor this style of programming when you can.
+JavaScript no és un llenguatge funcional com ho és Haskell, però té
+un toc de funcionalitat. Els llenguatges funcionals poden ser més nets i fàcils de provar.
+Prefereix aquest estil de programació sempre que puguis.
+
 
 **Bad:**
 
@@ -848,16 +857,17 @@ if (isDOMNodePresent(node)) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Avoid conditionals
+### Evita les condicionals
 
-This seems like an impossible task. Upon first hearing this, most people say,
-"how am I supposed to do anything without an `if` statement?" The answer is that
-you can use polymorphism to achieve the same task in many cases. The second
-question is usually, "well that's great but why would I want to do that?" The
-answer is a previous clean code concept we learned: a function should only do
-one thing. When you have classes and functions that have `if` statements, you
-are telling your user that your function does more than one thing. Remember,
-just do one thing.
+Això sembla una tasca impossible. En sentir-ho per primera vegada, molta gent diu,
+"com es suposa que he de fer res sense una declaració `if`?" La resposta és que
+pots utilitzar el polimorfisme per assolir la mateixa tasca en molts casos. La segona
+pregunta sol ser: "bé, això està bé, però per què voldria fer-ho?" La
+resposta és un concepte previ de codi net que vam aprendre: una funció només ha de fer
+una cosa. Quan tens classes i funcions amb declaracions `if`, estàs dient al teu usuari que
+la teva funció fa més d'una cosa. Recorda,
+fes només una cosa.
+
 
 **Bad:**
 
@@ -908,12 +918,13 @@ class Cessna extends Airplane {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Avoid type-checking (part 1)
+### Evita la comprovació de tipus (part 1)
 
-JavaScript is untyped, which means your functions can take any type of argument.
-Sometimes you are bitten by this freedom and it becomes tempting to do
-type-checking in your functions. There are many ways to avoid having to do this.
-The first thing to consider is consistent APIs.
+JavaScript és sense tipus, el que significa que les teves funcions poden acceptar qualsevol tipus d'argument.
+A vegades aquesta llibertat pot causar problemes i pot ser temptador fer
+comprovacions de tipus dins de les teves funcions. Hi ha moltes maneres d'evitar això.
+La primera cosa a considerar és mantenir APIs coherents.
+
 
 **Bad:**
 
@@ -937,17 +948,18 @@ function travelToTexas(vehicle) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Avoid type-checking (part 2)
+### Evita la comprovació de tipus (part 2)
 
-If you are working with basic primitive values like strings and integers,
-and you can't use polymorphism but you still feel the need to type-check,
-you should consider using TypeScript. It is an excellent alternative to normal
-JavaScript, as it provides you with static typing on top of standard JavaScript
-syntax. The problem with manually type-checking normal JavaScript is that
-doing it well requires so much extra verbiage that the faux "type-safety" you get
-doesn't make up for the lost readability. Keep your JavaScript clean, write
-good tests, and have good code reviews. Otherwise, do all of that but with
-TypeScript (which, like I said, is a great alternative!).
+Si estàs treballant amb valors primitius bàsics com cadenes i enters,
+i no pots utilitzar el polimorfisme però encara sents la necessitat de comprovar tipus,
+hauries de considerar l'ús de TypeScript. És una excel·lent alternativa al JavaScript normal,
+ja que t'ofereix tipat estàtic a sobre de la sintaxi estàndard de JavaScript.
+El problema de fer la comprovació de tipus manualment en JavaScript normal és que
+fer-ho bé requereix tantes paraules addicionals que la falsa "seguretat de tipus" que aconsegueixes
+no compensa la pèrdua de llegibilitat. Mantingues el teu JavaScript net, escriu
+bones proves i fes bones revisions de codi. En cas contrari, fes-ho tot això però amb
+TypeScript (que, com vaig dir, és una gran alternativa!).
+
 
 **Bad:**
 
@@ -974,13 +986,14 @@ function combine(val1, val2) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Don't over-optimize
+### No sobreoptimitzis
 
-Modern browsers do a lot of optimization under-the-hood at runtime. A lot of
-times, if you are optimizing then you are just wasting your time. [There are good
-resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
-for seeing where optimization is lacking. Target those in the meantime, until
-they are fixed if they can be.
+Els navegadors moderns fan molta optimització sota el capó en temps d'execució. Moltes vegades,
+si estàs optimitzant, simplement estàs perdent el teu temps. [Hi ha bons
+recursos](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
+per veure on manca optimització. Centra't en aquests mentre tant, fins
+que siguin resolts si es pot.
+
 
 **Bad:**
 
@@ -1002,11 +1015,12 @@ for (let i = 0; i < list.length; i++) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Remove dead code
+### Elimina el codi mort
 
-Dead code is just as bad as duplicate code. There's no reason to keep it in
-your codebase. If it's not being called, get rid of it! It will still be safe
-in your version history if you still need it.
+El codi mort és tan dolent com el codi duplicat. No hi ha cap raó per mantenir-lo al
+teu codi font. Si no s'està cridant, desfes-te'n! Encara estarà segur
+a la teva història de versions si encara el necessites.
+
 
 **Bad:**
 
@@ -1036,21 +1050,22 @@ inventoryTracker("apples", req, "www.inventory-awesome.io");
 
 **[⬆ back to top](#table-of-contents)**
 
-## **Objects and Data Structures**
+## **Objectes i Estructures de Dades**
 
-### Use getters and setters
+### Utilitza getters i setters
 
-Using getters and setters to access data on objects could be better than simply
-looking for a property on an object. "Why?" you might ask. Well, here's an
-unorganized list of reasons why:
+Utilitzar getters i setters per accedir a les dades dels objectes podria ser millor que simplement
+buscar una propietat en un objecte. "Per què?", podries preguntar. Bé, aquí tens una
+llista no organitzada de raons per les quals:
 
-- When you want to do more beyond getting an object property, you don't have
-  to look up and change every accessor in your codebase.
-- Makes adding validation simple when doing a `set`.
-- Encapsulates the internal representation.
-- Easy to add logging and error handling when getting and setting.
-- You can lazy load your object's properties, let's say getting it from a
-  server.
+- Quan vols fer més enllà d'obtenir una propietat d'un objecte, no has de
+  cercar i canviar cada accessor al teu codi font.
+- Facilita afegir validació quan fas un `set`.
+- Encapsula la representació interna.
+- Fàcil d'afegir registre i control d'errors quan es fa el get i el set.
+- Pots carregar les propietats del teu objecte de forma mandrosa, per exemple, obtenir-les d'un
+  servidor.
+
 
 **Bad:**
 
@@ -1099,9 +1114,10 @@ account.setBalance(100);
 
 **[⬆ back to top](#table-of-contents)**
 
-### Make objects have private members
+### Fes que els objectes tinguin membres privats
 
-This can be accomplished through closures (for ES5 and below).
+Això es pot aconseguir mitjançant tancaments (per a ES5 i versions anteriors).
+
 
 **Bad:**
 
@@ -1141,12 +1157,12 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 
 ## **Classes**
 
-### Prefer ES2015/ES6 classes over ES5 plain functions
+### Prefereix les classes ES2015/ES6 sobre les funcions simples d'ES5
 
-It's very difficult to get readable class inheritance, construction, and method
-definitions for classical ES5 classes. If you need inheritance (and be aware
-that you might not), then prefer ES2015/ES6 classes. However, prefer small functions over
-classes until you find yourself needing larger and more complex objects.
+És molt difícil obtenir una herència de classes llegible, construcció i definicions
+de mètodes per a les classes clàssiques d'ES5. Si necessites herència (i tingues en compte
+que potser no la necessitis), llavors prefereix les classes ES2015/ES6. No obstant això, prefereix petites funcions
+sobre classes fins que et trobis necessitant objectes més grans i complexes.
 
 **Bad:**
 
@@ -1226,13 +1242,14 @@ class Human extends Mammal {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Use method chaining
+### Utilitza la cadena de mètodes
 
-This pattern is very useful in JavaScript and you see it in many libraries such
-as jQuery and Lodash. It allows your code to be expressive, and less verbose.
-For that reason, I say, use method chaining and take a look at how clean your code
-will be. In your class functions, simply return `this` at the end of every function,
-and you can chain further class methods onto it.
+Aquest patró és molt útil a JavaScript i el veus en moltes llibreries com
+jQuery i Lodash. Permet que el teu codi sigui expressiu i menys verbós.
+Per aquesta raó, jo diria, utilitza la cadena de mètodes i observa quan net serà el teu codi.
+En les funcions de la teva classe, simplement retorna `this` al final de cada funció,
+i pots encadenar altres mètodes de classe a sobre.
+
 
 **Bad:**
 
@@ -1306,24 +1323,24 @@ const car = new Car("Ford", "F-150", "red").setColor("pink").save();
 
 **[⬆ back to top](#table-of-contents)**
 
-### Prefer composition over inheritance
+### Prefereix la composició sobre l'herència
 
-As stated famously in [_Design Patterns_](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
-you should prefer composition over inheritance where you can. There are lots of
-good reasons to use inheritance and lots of good reasons to use composition.
-The main point for this maxim is that if your mind instinctively goes for
-inheritance, try to think if composition could model your problem better. In some
-cases it can.
+Com es diu famosament a [_Design Patterns_](https://en.wikipedia.org/wiki/Design_Patterns) per la Gang of Four,
+hauries de preferir la composició sobre l'herència quan puguis. Hi ha moltes
+raons vàlides per utilitzar l'herència i moltes raons vàlides per utilitzar la composició.
+El punt principal d'aquesta màxima és que si la teva ment instintivament opta per
+l'herència, intenta pensar si la composició podria modelar millor el teu problema. En alguns
+casos pot ser així.
 
-You might be wondering then, "when should I use inheritance?" It
-depends on your problem at hand, but this is a decent list of when inheritance
-makes more sense than composition:
+Potser et preguntes aleshores, "quan hauria de fer servir l'herència?" Depèn del teu problema,
+però aquesta és una llista raonable de quan l'herència té més sentit que la composició:
 
-1. Your inheritance represents an "is-a" relationship and not a "has-a"
-   relationship (Human->Animal vs. User->UserDetails).
-2. You can reuse code from the base classes (Humans can move like all animals).
-3. You want to make global changes to derived classes by changing a base class.
-   (Change the caloric expenditure of all animals when they move).
+1. La teva herència representa una relació "és un" i no "té un"
+   (Humà->Animal vs. Usuari->DetallsUsuari).
+2. Pots reutilitzar codi de les classes base (Els humans es mouen com tots els animals).
+3. Vols fer canvis globals a les classes derivades canviant una classe base.
+   (Canvia la despesa calòrica de tots els animals quan es mouen).
+
 
 **Bad:**
 
@@ -1378,16 +1395,17 @@ class Employee {
 
 ## **SOLID**
 
-### Single Responsibility Principle (SRP)
+### Principi de Responsabilitat Única (SRP)
 
-As stated in Clean Code, "There should never be more than one reason for a class
-to change". It's tempting to jam-pack a class with a lot of functionality, like
-when you can only take one suitcase on your flight. The issue with this is
-that your class won't be conceptually cohesive and it will give it many reasons
-to change. Minimizing the amount of times you need to change a class is important.
-It's important because if too much functionality is in one class and you modify
-a piece of it, it can be difficult to understand how that will affect other
-dependent modules in your codebase.
+Com s'indica a Clean Code, "mai hauria de hi haver més d'un motiu perquè una classe
+canviï". És temptador omplir una classe amb molta funcionalitat, com
+quan només pots portar una maleta en el teu vol. El problema amb això és
+que la teva classe no serà conceptualment cohesionada i li donarà molts motius
+per canviar. Minimitzar la quantitat de vegades que necessites canviar una classe és important.
+És important perquè si hi ha massa funcionalitat en una classe i modifiques
+una part d'ella, pot ser difícil entendre com això afectarà altres
+mòduls dependents al teu codi font.
+
 
 **Bad:**
 
@@ -1438,12 +1456,13 @@ class UserSettings {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Open/Closed Principle (OCP)
+### Principi Obert/Tancat (OCP)
 
-As stated by Bertrand Meyer, "software entities (classes, modules, functions,
-etc.) should be open for extension, but closed for modification." What does that
-mean though? This principle basically states that you should allow users to
-add new functionalities without changing existing code.
+Com indica Bertrand Meyer, "les entitats de programari (classes, mòduls, funcions,
+etc.) han de ser obertes per a l'extensió, però tancades per a la modificació." Què vol
+dir això, però? Aquest principi bàsicament estableix que has de permetre als usuaris
+afegir noves funcionalitats sense canviar el codi existent.
+
 
 **Bad:**
 
@@ -1529,20 +1548,21 @@ class HttpRequester {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Liskov Substitution Principle (LSP)
+### Principi de Sustitució de Liskov (LSP)
 
-This is a scary term for a very simple concept. It's formally defined as "If S
-is a subtype of T, then objects of type T may be replaced with objects of type S
-(i.e., objects of type S may substitute objects of type T) without altering any
-of the desirable properties of that program (correctness, task performed,
-etc.)." That's an even scarier definition.
+Aquest és un terme impressionant per a un concepte molt simple. Es defineix formalment com "Si S
+és un subtipus de T, aleshores els objectes de tipus T es poden substituir amb objectes de tipus S
+és a dir, els objectes de tipus S poden substituir objectes de tipus T) sense alterar cap
+de les propietats desitjables d'aquest programa (correcció, tasca realitzada,
+etc.)." Aquesta és una definició encara més impressionant.
 
-The best explanation for this is if you have a parent class and a child class,
-then the base class and child class can be used interchangeably without getting
-incorrect results. This might still be confusing, so let's take a look at the
-classic Square-Rectangle example. Mathematically, a square is a rectangle, but
-if you model it using the "is-a" relationship via inheritance, you quickly
-get into trouble.
+La millor explicació per a això és que si tens una classe pare i una classe filla,
+llavors la classe base i la classe filla es poden utilitzar de manera interchangeable sense obtenir
+resultats incorrectes. Això encara pot ser confús, així que prenem el
+exemple clàssic del quadrat-rectangle. Matemàticament, un quadrat és un rectangle, però
+si el modelitges utilitzant la relació "és un" mitjançant l'herència, ràpidament
+entres en problemes.
+
 
 **Bad:**
 
@@ -1648,21 +1668,22 @@ renderLargeShapes(shapes);
 
 **[⬆ back to top](#table-of-contents)**
 
-### Interface Segregation Principle (ISP)
+### Principi de Segregació d'Interfícies (ISP)
 
-JavaScript doesn't have interfaces so this principle doesn't apply as strictly
-as others. However, it's important and relevant even with JavaScript's lack of
-type system.
+JavaScript no té interfícies, així que aquest principi no s'aplica tan estrictament
+com altres. No obstant això, és important i rellevant fins i tot amb la manca de
+sistema de tipus de JavaScript.
 
-ISP states that "Clients should not be forced to depend upon interfaces that
-they do not use." Interfaces are implicit contracts in JavaScript because of
-duck typing.
+L'ISP estableix que "els clients no haurien de ser obligats a dependre d'interfícies
+que no utilitzen." Les interfícies són contractes implícits a JavaScript a causa de
+l'ús de tipus anomenat duck typing.
 
-A good example to look at that demonstrates this principle in JavaScript is for
-classes that require large settings objects. Not requiring clients to setup
-huge amounts of options is beneficial, because most of the time they won't need
-all of the settings. Making them optional helps prevent having a
-"fat interface".
+Un bon exemple per veure que demostra aquest principi a JavaScript és per
+classes que requereixen objectes de configuració extensos. No obligar els clients a configurar
+una gran quantitat d'opcions és beneficiós, perquè la majoria del temps no necessitaran
+totes les configuracions. Fer-les opcionals ajuda a evitar tenir una
+"interfície grossa".
+
 
 **Bad:**
 
@@ -1726,28 +1747,26 @@ const $ = new DOMTraverser({
 
 **[⬆ back to top](#table-of-contents)**
 
-### Dependency Inversion Principle (DIP)
+### Principi d'Inversió de Dependències (DIP)
 
-This principle states two essential things:
+Aquest principi estableix dues coses essencials:
 
-1. High-level modules should not depend on low-level modules. Both should
-   depend on abstractions.
-2. Abstractions should not depend upon details. Details should depend on
-   abstractions.
+1. Els mòduls de nivell alt no haurien de dependre dels mòduls de nivell baix. Tots dos haurien de
+   dependre d'abstraccions.
+2. Les abstraccions no haurien de dependre dels detalls. Els detalls haurien de dependre de
+   les abstraccions.
 
-This can be hard to understand at first, but if you've worked with AngularJS,
-you've seen an implementation of this principle in the form of Dependency
-Injection (DI). While they are not identical concepts, DIP keeps high-level
-modules from knowing the details of its low-level modules and setting them up.
-It can accomplish this through DI. A huge benefit of this is that it reduces
-the coupling between modules. Coupling is a very bad development pattern because
-it makes your code hard to refactor.
+Això pot ser difícil d'entendre al principi, però si has treballat amb AngularJS,
+has vist una implementació d'aquest principi en forma d'Injecció de Dependències (DI). Tot i que no són conceptes idèntics, DIP evita que els mòduls de nivell alt coneguin els detalls dels seus mòduls de nivell baix i els configuri.
+Això es pot aconseguir mitjançant DI. Un enorme avantatge d'això és que redueix
+l'acoblament entre mòduls. L'acoblament és un patró de desenvolupament molt dolent perquè
+fa que el teu codi sigui difícil de refactoritzar.
 
-As stated previously, JavaScript doesn't have interfaces so the abstractions
-that are depended upon are implicit contracts. That is to say, the methods
-and properties that an object/class exposes to another object/class. In the
-example below, the implicit contract is that any Request module for an
-`InventoryTracker` will have a `requestItems` method.
+Com s'ha indicat anteriorment, JavaScript no té interfícies, així que les abstraccions
+en les quals es depèn són contractes implícits. Això vol dir que els mètodes
+i propietats que un objecte/classe exposa a un altre objecte/classe. En l'exemple següent, el contracte implícit és que qualsevol mòdul de sol·licitud per a un
+`InventoryTracker` tindrà un mètode `requestItems`.
+
 
 **Bad:**
 
@@ -1829,22 +1848,23 @@ inventoryTracker.requestItems();
 
 **[⬆ back to top](#table-of-contents)**
 
-## **Testing**
+## **Proves**
 
-Testing is more important than shipping. If you have no tests or an
-inadequate amount, then every time you ship code you won't be sure that you
-didn't break anything. Deciding on what constitutes an adequate amount is up
-to your team, but having 100% coverage (all statements and branches) is how
-you achieve very high confidence and developer peace of mind. This means that
-in addition to having a great testing framework, you also need to use a
-[good coverage tool](https://gotwarlost.github.io/istanbul/).
+Les proves són més importants que l'enviament. Si no tens proves o
+en tens una quantitat inadequada, llavors cada vegada que envies codi no estaràs segur que
+no has trencat res. Decidir què constitueix una quantitat adequada és cosa
+del teu equip, però tenir una cobertura del 100% (totes les declaracions i branques) és com
+aconsegueixes una confiança molt alta i tranquil·litat per al desenvolupador. Això significa que,
+a més de tenir un gran marc de proves, també has d'utilitzar una
+[bona eina de cobertura](https://gotwarlost.github.io/istanbul/).
 
-There's no excuse to not write tests. There are [plenty of good JS test frameworks](https://jstherightway.org/#testing-tools), so find one that your team prefers.
-When you find one that works for your team, then aim to always write tests
-for every new feature/module you introduce. If your preferred method is
-Test Driven Development (TDD), that is great, but the main point is to just
-make sure you are reaching your coverage goals before launching any feature,
-or refactoring an existing one.
+No hi ha excuses per no escriure proves. Hi ha [molts bons marcs de proves JS](https://jstherightway.org/#testing-tools), així que troba'n un que prefereixi el teu equip.
+Quan trobis un que funcioni per al teu equip, llavors intenta sempre escriure proves
+per a cada nova característica/mòdul que introdueixis. Si la teva metodologia preferida és
+Desenvolupament Guiat per Proves (TDD), això és genial, però el punt principal és assegurar-te
+sempre d'assolir els teus objectius de cobertura abans de llançar qualsevol característica
+o refactoritzar-ne una existent.
+
 
 ### Single concept per test
 
@@ -1902,10 +1922,11 @@ describe("MomentJS", () => {
 
 ## **Concurrency**
 
-### Use Promises, not callbacks
+### Utilitza Promeses, no callbacks
 
-Callbacks aren't clean, and they cause excessive amounts of nesting. With ES2015/ES6,
-Promises are a built-in global type. Use them!
+Els callbacks no són nets i provoquen quantitats excessives de nesting. Amb ES2015/ES6,
+les Promeses són un tipus global integrat. Utilitza-les!
+
 
 **Bad:**
 
@@ -1951,13 +1972,14 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
 
 **[⬆ back to top](#table-of-contents)**
 
-### Async/Await are even cleaner than Promises
+### Async/Await és encara més net que les Promeses
 
-Promises are a very clean alternative to callbacks, but ES2017/ES8 brings async and await
-which offer an even cleaner solution. All you need is a function that is prefixed
-in an `async` keyword, and then you can write your logic imperatively without
-a `then` chain of functions. Use this if you can take advantage of ES2017/ES8 features
-today!
+Les Promeses són una alternativa molt neta als callbacks, però ES2017/ES8 introdueix l'ús de `async` i `await`
+que ofereixen una solució encara més neta. Tot el que necessites és una funció que estigui prefixada
+amb la paraula clau `async`, i aleshores pots escriure la teva lògica de manera imperativa sense
+una cadena de funcions `then`. Utilitza això si pots aprofitar les funcionalitats de ES2017/ES8
+des d'avui mateix!
+
 
 **Bad:**
 
@@ -2000,21 +2022,21 @@ getCleanCodeArticle()
 
 **[⬆ back to top](#table-of-contents)**
 
-## **Error Handling**
+## **Maneig d'Errors**
 
-Thrown errors are a good thing! They mean the runtime has successfully
-identified when something in your program has gone wrong and it's letting
-you know by stopping function execution on the current stack, killing the
-process (in Node), and notifying you in the console with a stack trace.
+Els errors llançats són una bona cosa! Signifiquen que el temps d'execució ha identificat amb èxit
+quan alguna cosa al teu programa ha anat malament i t'està informant aturant l'execució de la funció en l'actual pila,
+tancant el procés (a Node) i informant-te a la consola amb una traça de pila.
 
-### Don't ignore caught errors
+### No ignoreu els errors capturats
 
-Doing nothing with a caught error doesn't give you the ability to ever fix
-or react to said error. Logging the error to the console (`console.log`)
-isn't much better as often times it can get lost in a sea of things printed
-to the console. If you wrap any bit of code in a `try/catch` it means you
-think an error may occur there and therefore you should have a plan,
-or create a code path, for when it occurs.
+No fer res amb un error capturat no et dóna la capacitat de corregir
+o reaccionar davant d'aquest error. Registrar l'error a la consola (`console.log`)
+no és molt millor, ja que moltes vegades es pot perdre en un mar de coses impreses
+a la consola. Si envolteges qualsevol fragment de codi amb un bloc `try/catch` significa que
+penses que pot ocórrer un error allà i, per tant, hauries de tenir un pla,
+o crear una via de codi, per quan això succeeixi.
+
 
 **Bad:**
 
@@ -2079,22 +2101,23 @@ getdata()
 
 **[⬆ back to top](#table-of-contents)**
 
-## **Formatting**
+## **Format**
 
-Formatting is subjective. Like many rules herein, there is no hard and fast
-rule that you must follow. The main point is DO NOT ARGUE over formatting.
-There are [tons of tools](https://standardjs.com/rules.html) to automate this.
-Use one! It's a waste of time and money for engineers to argue over formatting.
+El format és subjectiu. Com moltes de les normes aquí, no hi ha una regla estricta
+que calgui seguir. El punt principal és NO DISCUTIU sobre el format.
+Hi ha [un munt d'eines](https://standardjs.com/rules.html) per automatitzar això.
+Utilitzeu-ne una! És una pèrdua de temps i diners per als enginyers discutir sobre el format.
 
-For things that don't fall under the purview of automatic formatting
-(indentation, tabs vs. spaces, double vs. single quotes, etc.) look here
-for some guidance.
+Pel que fa a coses que no entren dins de l'àmbit del format automàtic
+(indentació, tabs vs. espais, cometes dobles vs. simples, etc.) busqueu aquí
+alguna orientació.
 
-### Use consistent capitalization
+### Utilitza una capitalització consistent
 
-JavaScript is untyped, so capitalization tells you a lot about your variables,
-functions, etc. These rules are subjective, so your team can choose whatever
-they want. The point is, no matter what you all choose, just be consistent.
+JavaScript no té tipus, així que la capitalització et diu molt sobre les teves variables,
+funcions, etc. Aquestes regles són subjectives, així que el teu equip pot triar el que vulgui.
+El punt és que, independentment del que triïu, simplement sigueu consistents.
+
 
 **Bad:**
 
@@ -2130,11 +2153,12 @@ class Alpaca {}
 
 **[⬆ back to top](#table-of-contents)**
 
-### Function callers and callees should be close
+### Les funcions que truquen i les trucades haurien de ser a prop
 
-If a function calls another, keep those functions vertically close in the source
-file. Ideally, keep the caller right above the callee. We tend to read code from
-top-to-bottom, like a newspaper. Because of this, make your code read that way.
+Si una funció truca a una altra, mantingueu aquestes funcions verticalment a prop al fitxer font.
+Idealment, mantingueu el trucant just sobre el trucat. Tendim a llegir el codi de dalt a baix, com un diari.
+Per això, feu que el vostre codi es llegeixi d'aquesta manera.
+
 
 **Bad:**
 
@@ -2218,11 +2242,12 @@ review.perfReview();
 
 **[⬆ back to top](#table-of-contents)**
 
-## **Comments**
+## **Comentaris**
 
-### Only comment things that have business logic complexity.
+### Comenteu només les coses que tenen complexitat de lògica empresarial.
 
-Comments are an apology, not a requirement. Good code _mostly_ documents itself.
+Els comentaris són una disculpa, no una exigència. Un bon codi _principalment_ es documenta per si mateix.
+
 
 **Bad:**
 
@@ -2265,9 +2290,10 @@ function hashIt(data) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Don't leave commented out code in your codebase
+### No deixeu codi comentat al vostre codi font
 
-Version control exists for a reason. Leave old code in your history.
+El control de versions existeix per alguna raó. Deixeu el codi antic al vostre historial.
+
 
 **Bad:**
 
@@ -2286,10 +2312,11 @@ doStuff();
 
 **[⬆ back to top](#table-of-contents)**
 
-### Don't have journal comments
+### No feu comentaris de diari
 
-Remember, use version control! There's no need for dead code, commented code,
-and especially journal comments. Use `git log` to get history!
+Recordeu, utilitzeu el control de versions! No hi ha necessitat de codi mort, codi comentat,
+i especialment de comentaris de diari. Utilitzeu `git log` per obtenir l'histor
+
 
 **Bad:**
 
@@ -2315,10 +2342,11 @@ function combine(a, b) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Avoid positional markers
+### Eviteu marcadors de posició
 
-They usually just add noise. Let the functions and variable names along with the
-proper indentation and formatting give the visual structure to your code.
+Normalment, només afegixen soroll. Deixeu que les funcions i els noms de variables, juntament amb
+la indentació i el format adequats, donin l'estructura visual al vostre codi.
+
 
 **Bad:**
 
