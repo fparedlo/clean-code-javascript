@@ -93,14 +93,14 @@ poden ajudar a identificar constants sense noms.
 **Incorrecte:**
 
 ```javascript
-// What the heck is 86400000 for?
+// Què significa 86400000?
 setTimeout(blastOff, 86400000);
 ```
 
 **Correcte:**
 
 ```javascript
-// Declare them as capitalized named constants.
+// Declareu-les com a constants amb noms en majúscules.
 const MILLISECONDS_PER_DAY = 60 * 60 * 24 * 1000; //86400000;
 
 setTimeout(blastOff, MILLISECONDS_PER_DAY);
@@ -146,7 +146,7 @@ locations.forEach(l => {
   // ...
   // ...
   // ...
-  // Wait, what is `l` for again?
+  // Espereu, què és `l` de nou?
   dispatch(l);
 });
 ```
@@ -338,7 +338,7 @@ function addToDate(date, month) {
 
 const date = new Date();
 
-// It's hard to tell from the function name what is added
+// És difícil saber pel nom de la funció què s'afegeix
 addToDate(date, 1);
 ```
 
@@ -542,7 +542,7 @@ createMenu(menuConfig);
 ```javascript
 const menuConfig = {
   title: "Order",
-  // User did not include 'body' key
+  // L'usuari no ha inclòs la clau 'body'
   buttonText: "Send",
   cancellable: true
 };
@@ -558,7 +558,7 @@ function createMenu(config) {
     config
   );
   return finalConfig
-  // config now equals: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
+  // ara la configuració és igual a: {title: "Order", body: "Bar", buttonText: "Send", cancellable: true}
   // ...
 }
 
@@ -618,8 +618,8 @@ més feliç que la gran majoria d'altres programadors.
 **Incorrecte:**
 
 ```javascript
-// Global variable referenced by following function.
-// If we had another function that used this name, now it'd be an array and it could break it.
+// Variable global referenciada per la funció següent.
+// Si tinguéssim una altra funció que utilitzés aquest nom, ara seria un array i podria trencar-ho.
 let name = "Ryan McDermott";
 
 function splitIntoFirstAndLastName() {
@@ -998,8 +998,8 @@ que siguin resolts si es pot.
 **Incorrecte:**
 
 ```javascript
-// On old browsers, each iteration with uncached `list.length` would be costly
-// because of `list.length` recomputation. In modern browsers, this is optimized.
+// En navegadors antics, cada iteració amb `list.length` sense emmagatzematge en memòria cau podria ser costosa
+// a causa de la recomputació de `list.length`. En navegadors moderns, això està optimitzat.
 for (let i = 0, len = list.length; i < len; i++) {
   // ...
 }
