@@ -46,25 +46,25 @@ millora. Castigueu el codi en canvi!
 
 ## **Variables**
 
-### Use meaningful and pronounceable variable names
+### Utilitzeu noms de variables significatius i pronunciables
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 const yyyymmdstr = moment().format("YYYY/MM/DD");
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 const currentDate = moment().format("YYYY/MM/DD");
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### Use the same vocabulary for the same type of variable
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 getUserInfo();
@@ -72,15 +72,15 @@ getClientData();
 getCustomerRecord();
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 getUser();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
-### Use searchable names
+### Utilitzeu noms que siguin fàcils de cercar
 
 Llegirem més codi del que mai escriurem. És important que el codi que
 escrivim sigui llegible i searchable. Al _no_ donar noms als variables que acaben
@@ -90,14 +90,14 @@ Fes que els teus noms siguin fàcils de cercar. Eines com
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
 poden ajudar a identificar constants sense noms.
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 // What the heck is 86400000 for?
 setTimeout(blastOff, 86400000);
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 // Declare them as capitalized named constants.
@@ -106,11 +106,11 @@ const MILLISECONDS_PER_DAY = 60 * 60 * 24 * 1000; //86400000;
 setTimeout(blastOff, MILLISECONDS_PER_DAY);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### Use explanatory variables
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 const address = "One Infinite Loop, Cupertino 95014";
@@ -121,7 +121,7 @@ saveCityZipCode(
 );
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 const address = "One Infinite Loop, Cupertino 95014";
@@ -130,13 +130,13 @@ const [_, city, zipCode] = address.match(cityZipCodeRegex) || [];
 saveCityZipCode(city, zipCode);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
-### Avoid Mental Mapping
+### Eviteu el Mapeig Mental
 
-Explicit is better than implicit.
+L'explícit és millor que l'implícit.
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 const locations = ["Austin", "New York", "San Francisco"];
@@ -151,7 +151,7 @@ locations.forEach(l => {
 });
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 const locations = ["Austin", "New York", "San Francisco"];
@@ -165,14 +165,14 @@ locations.forEach(location => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
-### Don't add unneeded context
+### No afegiu context innecessari
 
-If your class/object name tells you something, don't repeat that in your
-variable name.
+Si el nom de la vostra classe/objecte ja us diu alguna cosa, no ho repetiu en el
+nom de la vostra variable.
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 const Car = {
@@ -186,7 +186,7 @@ function paintCar(car, color) {
 }
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 const Car = {
@@ -200,9 +200,9 @@ function paintCar(car, color) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
-### Use default parameters instead of short circuiting or conditionals
+### Utilitzeu paràmetres per defecte en lloc de circuits curts o condicionals
 
 Els paràmetres per defecte sovint són més nets que l'ús de l'operador de curtcircuit. Tingueu en compte que, si
 els utilitzeu, la vostra funció només proporcionarà valors per defecte als arguments `undefined`.
@@ -210,7 +210,7 @@ Altres valors "falsos" com ara `''`, `""`, `false`, `null`, `0` i
 `NaN`, no seran substituïts per un valor per defecte.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 function createMicrobrewery(name) {
@@ -219,7 +219,7 @@ function createMicrobrewery(name) {
 }
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 function createMicrobrewery(name = "Hipster Brew Co.") {
@@ -227,11 +227,11 @@ function createMicrobrewery(name = "Hipster Brew Co.") {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
-## **Functions**
+## **Funcions**
 
-### Function arguments (2 or fewer ideally)
+### Arguments de la funció (idealment 2 o menys)
 
 Limitar la quantitat de paràmetres d'una funció és increïblement important perquè
 facilita les proves de la teva funció. Tenir més de tres porta a una
@@ -262,7 +262,7 @@ destructuració d'ES2015/ES6. Això té algunes avantatges:
    sense la destructuració.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 function createMenu(title, body, buttonText, cancellable) {
@@ -273,7 +273,7 @@ createMenu("Foo", "Bar", "Baz", true);
 
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 function createMenu({ title, body, buttonText, cancellable }) {
@@ -288,9 +288,9 @@ createMenu({
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
-### Functions should do one thing
+### Les funcions haurien de fer una sola cosa
 
 Aquesta és de lluny la regla més important en enginyeria de programari. Quan les funcions
 fan més d'una cosa, són més difícils de compondre, provar i raonar.
@@ -299,7 +299,7 @@ fàcilment i el teu codi serà molt més llegible. Si no prens res més d'aquest
 guia que això, estàs per davant de molts desenvolupadors.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 function emailClients(clients) {
@@ -312,7 +312,7 @@ function emailClients(clients) {
 }
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 function emailActiveClients(clients) {
@@ -325,11 +325,11 @@ function isActiveClient(client) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
-### Function names should say what they do
+### Els noms de les funcions haurien de dir què fan
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 function addToDate(date, month) {
@@ -342,7 +342,7 @@ const date = new Date();
 addToDate(date, 1);
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 function addMonthToDate(month, date) {
@@ -353,15 +353,15 @@ const date = new Date();
 addMonthToDate(1, date);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
-### Functions should only be one level of abstraction
+### Les funcions només haurien de tenir un nivell d'abstracció
 
 Quan tens més d'un nivell d'abstracció, la teva funció normalment
 fa massa coses. Descompondre les funcions porta a la reutilització i a
 proves més senzilles.
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 function parseBetterJSAlternative(code) {
@@ -388,7 +388,7 @@ function parseBetterJSAlternative(code) {
 }
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 function parseBetterJSAlternative(code) {
@@ -425,7 +425,7 @@ function parse(tokens) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### Elimina el codi duplicat
 
@@ -451,7 +451,7 @@ una bona abstracció, fes-ho! No et repeteixis, d'una altra manera et trobaràs
 actualitzant diversos llocs cada vegada que vulguis canviar una cosa.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 function showDeveloperList(developers) {
@@ -485,7 +485,7 @@ function showManagerList(managers) {
 }
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 function showEmployeeList(employees) {
@@ -512,11 +512,11 @@ function showEmployeeList(employees) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
-### Set default objects with Object.assign
+### Estableix els objectes per defecte amb Object.assign
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 const menuConfig = {
@@ -537,7 +537,7 @@ function createMenu(config) {
 createMenu(menuConfig);
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 const menuConfig = {
@@ -565,13 +565,13 @@ function createMenu(config) {
 createMenu(menuConfig);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### No utilitzis banderes com a paràmetres de funció
 
 Les banderes indiquen als teus usuaris que aquesta funció fa més d'una cosa. Les funcions haurien de fer només una cosa. Separa les teves funcions si segueixen diferents camins de codi basats en un booleà.
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 function createFile(name, temp) {
@@ -583,7 +583,7 @@ function createFile(name, temp) {
 }
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 function createFile(name) {
@@ -595,7 +595,7 @@ function createTempFile(name) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### Evita els efectes secundaris (part 1)
 
@@ -615,7 +615,7 @@ i no centralitzar on es produeixen els teus efectes secundaris. Si pots fer aix�
 més feliç que la gran majoria d'altres programadors.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 // Global variable referenced by following function.
@@ -631,7 +631,7 @@ splitIntoFirstAndLastName();
 console.log(name); // ['Ryan', 'McDermott'];
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 function splitIntoFirstAndLastName(name) {
@@ -645,7 +645,7 @@ console.log(name); // 'Ryan McDermott';
 console.log(newName); // ['Ryan', 'McDermott'];
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### Evita els efectes secundaris (part 2)
 
@@ -686,7 +686,7 @@ Cal mencionar dues advertències sobre aquest enfocament:
    ho seria si clonessis manualment objectes i llistes.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 const addItemToCart = (cart, item) => {
@@ -694,7 +694,7 @@ const addItemToCart = (cart, item) => {
 };
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 const addItemToCart = (cart, item) => {
@@ -702,7 +702,7 @@ const addItemToCart = (cart, item) => {
 };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### No escriguis a funcions globals
 
@@ -717,7 +717,7 @@ la diferència entre el primer i l'últim element d'una llista? Per això,
 seria molt millor utilitzar simplement classes ES2015/ES6 i estendre simplement l'`Array` global.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 Array.prototype.diff = function diff(comparisonArray) {
@@ -726,7 +726,7 @@ Array.prototype.diff = function diff(comparisonArray) {
 };
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 class SuperArray extends Array {
@@ -737,7 +737,7 @@ class SuperArray extends Array {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### Prefereix la programació funcional sobre la programació imperativa
 
@@ -746,7 +746,7 @@ un toc de funcionalitat. Els llenguatges funcionals poden ser més nets i fàcil
 Prefereix aquest estil de programació sempre que puguis.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 const programmerOutput = [
@@ -775,7 +775,7 @@ for (let i = 0; i < programmerOutput.length; i++) {
 }
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 const programmerOutput = [
@@ -803,11 +803,11 @@ const totalOutput = programmerOutput.reduce(
 );
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### Encapsulate conditionals
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 if (fsm.state === "fetching" && isEmpty(listNode)) {
@@ -815,7 +815,7 @@ if (fsm.state === "fetching" && isEmpty(listNode)) {
 }
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 function shouldShowSpinner(fsm, listNode) {
@@ -827,11 +827,11 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
-### Avoid negative conditionals
+### Eviteu condicionals negatius
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 function isDOMNodeNotPresent(node) {
@@ -843,7 +843,7 @@ if (!isDOMNodeNotPresent(node)) {
 }
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 function isDOMNodePresent(node) {
@@ -855,7 +855,7 @@ if (isDOMNodePresent(node)) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### Evita les condicionals
 
@@ -869,7 +869,7 @@ la teva funció fa més d'una cosa. Recorda,
 fes només una cosa.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 class Airplane {
@@ -887,7 +887,7 @@ class Airplane {
 }
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 class Airplane {
@@ -916,7 +916,7 @@ class Cessna extends Airplane {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### Evita la comprovació de tipus (part 1)
 
@@ -926,7 +926,7 @@ comprovacions de tipus dins de les teves funcions. Hi ha moltes maneres d'evitar
 La primera cosa a considerar és mantenir APIs coherents.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 function travelToTexas(vehicle) {
@@ -938,7 +938,7 @@ function travelToTexas(vehicle) {
 }
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 function travelToTexas(vehicle) {
@@ -946,7 +946,7 @@ function travelToTexas(vehicle) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### Evita la comprovació de tipus (part 2)
 
@@ -961,7 +961,7 @@ bones proves i fes bones revisions de codi. En cas contrari, fes-ho tot això pe
 TypeScript (que, com vaig dir, és una gran alternativa!).
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 function combine(val1, val2) {
@@ -976,7 +976,7 @@ function combine(val1, val2) {
 }
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 function combine(val1, val2) {
@@ -984,7 +984,7 @@ function combine(val1, val2) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### No sobreoptimitzis
 
@@ -995,7 +995,7 @@ per veure on manca optimització. Centra't en aquests mentre tant, fins
 que siguin resolts si es pot.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 // On old browsers, each iteration with uncached `list.length` would be costly
@@ -1005,7 +1005,7 @@ for (let i = 0, len = list.length; i < len; i++) {
 }
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 for (let i = 0; i < list.length; i++) {
@@ -1013,7 +1013,7 @@ for (let i = 0; i < list.length; i++) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### Elimina el codi mort
 
@@ -1022,7 +1022,7 @@ teu codi font. Si no s'està cridant, desfes-te'n! Encara estarà segur
 a la teva història de versions si encara el necessites.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 function oldRequestModule(url) {
@@ -1037,7 +1037,7 @@ const req = newRequestModule;
 inventoryTracker("apples", req, "www.inventory-awesome.io");
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 function newRequestModule(url) {
@@ -1048,7 +1048,7 @@ const req = newRequestModule;
 inventoryTracker("apples", req, "www.inventory-awesome.io");
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ## **Objectes i Estructures de Dades**
 
@@ -1067,7 +1067,7 @@ llista no organitzada de raons per les quals:
   servidor.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 function makeBankAccount() {
@@ -1083,7 +1083,7 @@ const account = makeBankAccount();
 account.balance = 100;
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 function makeBankAccount() {
@@ -1112,14 +1112,14 @@ const account = makeBankAccount();
 account.setBalance(100);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### Fes que els objectes tinguin membres privats
 
 Això es pot aconseguir mitjançant tancaments (per a ES5 i versions anteriors).
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 const Employee = function(name) {
@@ -1136,7 +1136,7 @@ delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: undefined
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 function makeEmployee(name) {
@@ -1153,7 +1153,7 @@ delete employee.name;
 console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ## **Classes**
 
@@ -1164,7 +1164,7 @@ de mètodes per a les classes clàssiques d'ES5. Si necessites herència (i ting
 que potser no la necessitis), llavors prefereix les classes ES2015/ES6. No obstant això, prefereix petites funcions
 sobre classes fins que et trobis necessitant objectes més grans i complexes.
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 const Animal = function(age) {
@@ -1204,7 +1204,7 @@ Human.prototype.constructor = Human;
 Human.prototype.speak = function speak() {};
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 class Animal {
@@ -1240,7 +1240,7 @@ class Human extends Mammal {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### Utilitza la cadena de mètodes
 
@@ -1251,7 +1251,7 @@ En les funcions de la teva classe, simplement retorna `this` al final de cada fu
 i pots encadenar altres mètodes de classe a sobre.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 class Car {
@@ -1283,7 +1283,7 @@ car.setColor("pink");
 car.save();
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 class Car {
@@ -1321,7 +1321,7 @@ class Car {
 const car = new Car("Ford", "F-150", "red").setColor("pink").save();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### Prefereix la composició sobre l'herència
 
@@ -1342,7 +1342,7 @@ però aquesta és una llista raonable de quan l'herència té més sentit que la
    (Canvia la despesa calòrica de tots els animals quan es mouen).
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 class Employee {
@@ -1366,7 +1366,7 @@ class EmployeeTaxData extends Employee {
 }
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 class EmployeeTaxData {
@@ -1391,7 +1391,7 @@ class Employee {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ## **SOLID**
 
@@ -1407,7 +1407,7 @@ una part d'ella, pot ser difícil entendre com això afectarà altres
 mòduls dependents al teu codi font.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 class UserSettings {
@@ -1427,7 +1427,7 @@ class UserSettings {
 }
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 class UserAuth {
@@ -1454,7 +1454,7 @@ class UserSettings {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### Principi Obert/Tancat (OCP)
 
@@ -1464,7 +1464,7 @@ dir això, però? Aquest principi bàsicament estableix que has de permetre als 
 afegir noves funcionalitats sense canviar el codi existent.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 class AjaxAdapter extends Adapter {
@@ -1508,7 +1508,7 @@ function makeHttpCall(url) {
 }
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 class AjaxAdapter extends Adapter {
@@ -1546,7 +1546,7 @@ class HttpRequester {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### Principi de Sustitució de Liskov (LSP)
 
@@ -1564,7 +1564,7 @@ si el modelitges utilitzant la relació "és un" mitjançant l'herència, ràpid
 entres en problemes.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 class Rectangle {
@@ -1619,7 +1619,7 @@ const rectangles = [new Rectangle(), new Rectangle(), new Square()];
 renderLargeRectangles(rectangles);
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 class Shape {
@@ -1666,7 +1666,7 @@ const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
 renderLargeShapes(shapes);
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### Principi de Segregació d'Interfícies (ISP)
 
@@ -1685,7 +1685,7 @@ totes les configuracions. Fer-les opcionals ajuda a evitar tenir una
 "interfície grossa".
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 class DOMTraverser {
@@ -1711,7 +1711,7 @@ const $ = new DOMTraverser({
 });
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 class DOMTraverser {
@@ -1745,7 +1745,7 @@ const $ = new DOMTraverser({
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### Principi d'Inversió de Dependències (DIP)
 
@@ -1768,7 +1768,7 @@ i propietats que un objecte/classe exposa a un altre objecte/classe. En l'exempl
 `InventoryTracker` tindrà un mètode `requestItems`.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 class InventoryRequester {
@@ -1801,7 +1801,7 @@ const inventoryTracker = new InventoryTracker(["apples", "bananas"]);
 inventoryTracker.requestItems();
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 class InventoryTracker {
@@ -1846,7 +1846,7 @@ const inventoryTracker = new InventoryTracker(
 inventoryTracker.requestItems();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ## **Proves**
 
@@ -1868,7 +1868,7 @@ o refactoritzar-ne una existent.
 
 ### Single concept per test
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 import assert from "assert";
@@ -1892,7 +1892,7 @@ describe("MomentJS", () => {
 });
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 import assert from "assert";
@@ -1918,9 +1918,9 @@ describe("MomentJS", () => {
 });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
-## **Concurrency**
+## **Concurrència**
 
 ### Utilitza Promeses, no callbacks
 
@@ -1928,7 +1928,7 @@ Els callbacks no són nets i provoquen quantitats excessives de nesting. Amb ES2
 les Promeses són un tipus global integrat. Utilitza-les!
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 import { get } from "request";
@@ -1952,7 +1952,7 @@ get(
 );
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 import { get } from "request-promise";
@@ -1970,7 +1970,7 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
   });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### Async/Await és encara més net que les Promeses
 
@@ -1981,7 +1981,7 @@ una cadena de funcions `then`. Utilitza això si pots aprofitar les funcionalita
 des d'avui mateix!
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 import { get } from "request-promise";
@@ -1999,7 +1999,7 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
   });
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 import { get } from "request-promise";
@@ -2020,7 +2020,7 @@ async function getCleanCodeArticle() {
 getCleanCodeArticle()
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ## **Maneig d'Errors**
 
@@ -2038,7 +2038,7 @@ penses que pot ocórrer un error allà i, per tant, hauries de tenir un pla,
 o crear una via de codi, per quan això succeeixi.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 try {
@@ -2048,7 +2048,7 @@ try {
 }
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 try {
@@ -2069,7 +2069,7 @@ try {
 For the same reason you shouldn't ignore caught errors
 from `try/catch`.
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 getdata()
@@ -2081,7 +2081,7 @@ getdata()
   });
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 getdata()
@@ -2099,7 +2099,7 @@ getdata()
   });
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ## **Format**
 
@@ -2119,7 +2119,7 @@ funcions, etc. Aquestes regles són subjectives, així que el teu equip pot tria
 El punt és que, independentment del que triïu, simplement sigueu consistents.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 const DAYS_IN_WEEK = 7;
@@ -2135,7 +2135,7 @@ class animal {}
 class Alpaca {}
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 const DAYS_IN_WEEK = 7;
@@ -2151,7 +2151,7 @@ class Animal {}
 class Alpaca {}
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### Les funcions que truquen i les trucades haurien de ser a prop
 
@@ -2160,7 +2160,7 @@ Idealment, mantingueu el trucant just sobre el trucat. Tendim a llegir el codi d
 Per això, feu que el vostre codi es llegeixi d'aquesta manera.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 class PerformanceReview {
@@ -2200,7 +2200,7 @@ const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 class PerformanceReview {
@@ -2240,7 +2240,7 @@ const review = new PerformanceReview(employee);
 review.perfReview();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ## **Comentaris**
 
@@ -2249,7 +2249,7 @@ review.perfReview();
 Els comentaris són una disculpa, no una exigència. Un bon codi _principalment_ es documenta per si mateix.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 function hashIt(data) {
@@ -2271,7 +2271,7 @@ function hashIt(data) {
 }
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 function hashIt(data) {
@@ -2288,14 +2288,14 @@ function hashIt(data) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### No deixeu codi comentat al vostre codi font
 
 El control de versions existeix per alguna raó. Deixeu el codi antic al vostre historial.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 doStuff();
@@ -2304,13 +2304,13 @@ doStuff();
 // doSoMuchStuff();
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 doStuff();
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### No feu comentaris de diari
 
@@ -2318,7 +2318,7 @@ Recordeu, utilitzeu el control de versions! No hi ha necessitat de codi mort, co
 i especialment de comentaris de diari. Utilitzeu `git log` per obtenir l'histor
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 /**
@@ -2332,7 +2332,7 @@ function combine(a, b) {
 }
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 function combine(a, b) {
@@ -2340,7 +2340,7 @@ function combine(a, b) {
 }
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
 ### Eviteu marcadors de posició
 
@@ -2348,7 +2348,7 @@ Normalment, només afegixen soroll. Deixeu que les funcions i els noms de variab
 la indentació i el format adequats, donin l'estructura visual al vostre codi.
 
 
-**Bad:**
+**Incorrecte:**
 
 ```javascript
 ////////////////////////////////////////////////////////////////////////////////
@@ -2367,7 +2367,7 @@ const actions = function() {
 };
 ```
 
-**Good:**
+**Correcte:**
 
 ```javascript
 $scope.model = {
@@ -2380,11 +2380,11 @@ const actions = function() {
 };
 ```
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
 
-## Translation
+## Traducció
 
-This is also available in other languages:
+Aquesta informació també està disponible en altres idiomes:
 
 - ![am](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Armenia.png) **Armenian**: [hanumanum/clean-code-javascript/](https://github.com/hanumanum/clean-code-javascript)
 - ![bd](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Bangladesh.png) **Bangla(বাংলা)**: [InsomniacSabbir/clean-code-javascript/](https://github.com/InsomniacSabbir/clean-code-javascript/)
@@ -2411,4 +2411,4 @@ This is also available in other languages:
 - ![vi](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Vietnam.png) **Vietnamese**: [hienvd/clean-code-javascript/](https://github.com/hienvd/clean-code-javascript/)
 - ![ir](https://raw.githubusercontent.com/gosquared/flags/master/flags/flags/shiny/24/Iran.png) **Persian**: [hamettio/clean-code-javascript](https://github.com/hamettio/clean-code-javascript)
 
-**[⬆ back to top](#table-of-contents)**
+**[⬆ Tornar a la Taula de Continguts"](#table-of-contents)**
