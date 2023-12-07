@@ -1087,17 +1087,17 @@ account.balance = 100;
 
 ```javascript
 function makeBankAccount() {
-  // this one is private
+  // aquest és privat
   let balance = 0;
 
-  // a "getter", made public via the returned object below
+  // un "getter", fet públic mitjançant l'objecte retornat a continuació
   function getBalance() {
     return balance;
   }
 
-  // a "setter", made public via the returned object below
+  // un "setter", fet públic mitjançant l'objecte retornat a continuació
   function setBalance(amount) {
-    // ... validate before updating the balance
+    // ... validar abans d'actualitzar el balanç
     balance = amount;
   }
 
@@ -1295,25 +1295,25 @@ class Car {
 
   setMake(make) {
     this.make = make;
-    // NOTE: Returning this for chaining
+   // NOTA: retornant això per encadenar
     return this;
   }
 
   setModel(model) {
     this.model = model;
-    // NOTE: Returning this for chaining
+    // NOTA: retornant això per encadenar
     return this;
   }
 
   setColor(color) {
     this.color = color;
-    // NOTE: Returning this for chaining
+    // NOTA: retornant això per encadenar
     return this;
   }
 
   save() {
     console.log(this.make, this.model, this.color);
-    // NOTE: Returning this for chaining
+    // NOTA: retornant això per encadenar
     return this;
   }
 }
@@ -1354,7 +1354,7 @@ class Employee {
   // ...
 }
 
-// Bad because Employees "have" tax data. EmployeeTaxData is not a type of Employee
+// Dolent perquè els empleats "tenen" dades fiscals. EmployeeTaxData no és un tipus d'empleat
 class EmployeeTaxData extends Employee {
   constructor(ssn, salary) {
     super();
@@ -1489,22 +1489,22 @@ class HttpRequester {
   fetch(url) {
     if (this.adapter.name === "ajaxAdapter") {
       return makeAjaxCall(url).then(response => {
-        // transform response and return
+        // retorna la resposta transformada
       });
     } else if (this.adapter.name === "nodeAdapter") {
       return makeHttpCall(url).then(response => {
-        // transform response and return
+        // retorna la resposta transformada
       });
     }
   }
 }
 
 function makeAjaxCall(url) {
-  // request and return promise
+  // Fer la petició i retorna la promesa
 }
 
 function makeHttpCall(url) {
-  // request and return promise
+  // Fer la petició i retorna la promesa
 }
 ```
 
@@ -1518,7 +1518,7 @@ class AjaxAdapter extends Adapter {
   }
 
   request(url) {
-    // request and return promise
+    // Fer la petició i retorna la promesa
   }
 }
 
@@ -1529,7 +1529,7 @@ class NodeAdapter extends Adapter {
   }
 
   request(url) {
-    // request and return promise
+    // Fer la petició i retorna la promesa
   }
 }
 
@@ -1540,7 +1540,7 @@ class HttpRequester {
 
   fetch(url) {
     return this.adapter.request(url).then(response => {
-      // transform response and return
+      // retorna la resposta transformada
     });
   }
 }
@@ -1610,7 +1610,7 @@ function renderLargeRectangles(rectangles) {
   rectangles.forEach(rectangle => {
     rectangle.setWidth(4);
     rectangle.setHeight(5);
-    const area = rectangle.getArea(); // BAD: Returns 25 for Square. Should be 20.
+    const area = rectangle.getArea(); // Incorrecte: retorna 25 per quadrat. Hauria de ser 20.
     rectangle.render(area);
   });
 }
@@ -1706,7 +1706,7 @@ class DOMTraverser {
 
 const $ = new DOMTraverser({
   rootNode: document.getElementsByTagName("body"),
-  animationModule() {} // Most of the time, we won't need to animate when traversing.
+  animationModule() {} // La majoria de les vegades, no caldrà animar quan travessem el DOM.
   // ...
 });
 ```
@@ -1785,8 +1785,8 @@ class InventoryTracker {
   constructor(items) {
     this.items = items;
 
-    // BAD: We have created a dependency on a specific request implementation.
-    // We should just have requestItems depend on a request method: `request`
+    // Incorrecte: hem creat una dependència en una sol·licitud específica.
+    // Només hauríem de tenir requestItems depenent d'un mètode de sol·licitud: `request`
     this.requester = new InventoryRequester();
   }
 
@@ -1837,8 +1837,8 @@ class InventoryRequesterV2 {
   }
 }
 
-// By constructing our dependencies externally and injecting them, we can easily
-// substitute our request module for a fancy new one that uses WebSockets.
+// Construint les nostres dependències externament i injectant-les, podem fàcilment
+// substituir el nostre mòdul de sol·licitud per un de nou que utilitzi WebSockets.
 const inventoryTracker = new InventoryTracker(
   ["apples", "bananas"],
   new InventoryRequesterV2()
@@ -1866,7 +1866,7 @@ sempre d'assolir els teus objectius de cobertura abans de llançar qualsevol car
 o refactoritzar-ne una existent.
 
 
-### Single concept per test
+### Concepte únic per prova
 
 **Incorrecte:**
 
@@ -2054,20 +2054,20 @@ try {
 try {
   functionThatMightThrow();
 } catch (error) {
-  // One option (more noisy than console.log):
+  // Una opció (more noisy than console.log):
   console.error(error);
-  // Another option:
+  // Un altre opció
   notifyUserOfError(error);
-  // Another option:
+  // Un altre opció
   reportErrorToService(error);
-  // OR do all three!
+  // o fes totes tres
 }
 ```
 
-### Don't ignore rejected promises
+### No ignoreu les promeses rebutjades
 
-For the same reason you shouldn't ignore caught errors
-from `try/catch`.
+Per la mateixa raó, no hauríeu d'ignorar els errors detectats
+dins `try/catch`.
 
 **Incorrecte:**
 
@@ -2089,13 +2089,13 @@ getdata()
     functionThatMightThrow(data);
   })
   .catch(error => {
-    // One option (more noisy than console.log):
+    // Una opció (més sorollosa que console.log):
     console.error(error);
-    // Another option:
+    // Una altra opció:
     notifyUserOfError(error);
-    // Another option:
+    // Una altra opció:
     reportErrorToService(error);
-    // OR do all three!
+    // O fes les tres!
   });
 ```
 
@@ -2253,19 +2253,19 @@ Els comentaris són una disculpa, no una exigència. Un bon codi _principalment_
 
 ```javascript
 function hashIt(data) {
-  // The hash
+  // El hash
   let hash = 0;
 
-  // Length of string
+  // Longitud del String
   const length = data.length;
 
-  // Loop through every character in data
+  // Recorre tots els caràcters de les dades
   for (let i = 0; i < length; i++) {
-    // Get character code.
+    // Obteniu el codi de caràcters.
     const char = data.charCodeAt(i);
-    // Make the hash
+    // Fes el hash
     hash = (hash << 5) - hash + char;
-    // Convert to 32-bit integer
+    // Converteix to 32-bit enter
     hash &= hash;
   }
 }
@@ -2282,7 +2282,7 @@ function hashIt(data) {
     const char = data.charCodeAt(i);
     hash = (hash << 5) - hash + char;
 
-    // Convert to 32-bit integer
+    // Converteix to 32-bit integer
     hash &= hash;
   }
 }
@@ -2352,7 +2352,7 @@ la indentació i el format adequats, donin l'estructura visual al vostre codi.
 
 ```javascript
 ////////////////////////////////////////////////////////////////////////////////
-// Scope Model Instantiation
+// Instanciació del model d'abast
 ////////////////////////////////////////////////////////////////////////////////
 $scope.model = {
   menu: "foo",
@@ -2360,7 +2360,7 @@ $scope.model = {
 };
 
 ////////////////////////////////////////////////////////////////////////////////
-// Action setup
+// Configuració de l'acció
 ////////////////////////////////////////////////////////////////////////////////
 const actions = function() {
   // ...
