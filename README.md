@@ -669,7 +669,7 @@ en un article que en realitat no vol abans que comenci la sol·licitud de xarxa?
 Si això passa i comença la sol·licitud de xarxa, llavors aquesta funció de compra
 enviarà l'article afegit accidentalment perquè la llista `cart` va ser modificada.
 
-Una solució excel·lent seria que la funció `afegirItemAlCarro` sempre clonés el
+Una solució excel·lent seria que la funció `addItemToCart` sempre clonés el
 `cart`, l'edités i retornés el clon. Això garantiria que les funcions que segueixen
 utilitzant el vell carro de la compra no es veurien afectades pels canvis.
 
